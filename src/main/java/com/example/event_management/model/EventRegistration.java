@@ -29,3 +29,5 @@ public class EventRegistration {
     @Column(nullable = false)
     private LocalDateTime registrationDate;
 }
+
+
