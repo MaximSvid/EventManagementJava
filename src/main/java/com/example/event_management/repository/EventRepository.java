@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Dieses Interface dient als Repository für die Verwaltung von Events.
  * Es ermöglicht CRUD-Operationen auf der Event-Entität und bietet eine Methode,
- * um alle Events eines bestimmten Organisators zu finden.
+ * um alle Events eines bestimmten Organisators zu finden
  */
 public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByOrganizerId(Long organizerId);
