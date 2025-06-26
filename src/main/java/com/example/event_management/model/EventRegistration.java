@@ -9,10 +9,12 @@ import java.time.LocalDateTime;
  * Diese Klasse repräsentiert die Tabelle "event_registrations",
  * die die Anmeldungen von Benutzern zu Veranstaltungen speichert.
  * Sie enthält Referenzen auf den Benutzer, das Event und das Anmeldedatum
+
+ * * Die Getter- und Setter-Methoden ermöglichen den Zugriff und die Modifikation
+ *  * der privaten Felder dieser Klasse.
  */
 @Entity
 @Table(name = "event_registrations")
-@Data
 public class EventRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +30,41 @@ public class EventRegistration {
 
     @Column(nullable = false)
     private LocalDateTime registrationDate;
+
+    /// Getter- und Setter-Methoden für alle Felder
+    /// Getter und Setter sind Methoden, mit denen man auf private Felder einer Klasse zugreifen und deren Werte ändern kann.
+    /// Sie sorgen für Datenkapselung und kontrollierten Zugriff auf die Eigenschaften eines Objekts.
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 }
 
 
