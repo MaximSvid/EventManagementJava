@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
-// Die Tabelle „users“ enthält folgende Spalten:
-//id (Primärschlüssel), userName, email, sowie role (Benutzerrolle: ORGANIZER oder PARTICIPANT).
-//Jeder Benutzer kann mehrere Events organisieren und an mehreren Events teilnehmen
+/**
+ * Die Tabelle „users“ enthält folgende Spalten:
+ * id (Primärschlüssel), userName, email, sowie role (Benutzerrolle: ORGANIZER oder PARTICIPANT).
+ * Jeder Benutzer kann mehrere Events organisieren und an mehreren Events teilnehmen
+ */
 @Entity
 @Table(name = "users")
 @Data
