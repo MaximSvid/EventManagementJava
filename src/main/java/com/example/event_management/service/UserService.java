@@ -2,6 +2,7 @@ package com.example.event_management.service;
 
 import com.example.event_management.model.User;
 import com.example.event_management.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,21 +21,28 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User with ID " + id + " not found"));
     }
 
-    public User createUser(User user) {
+    public User registerUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("User with this email already exists");
+        }
         return userRepository.save(user);
     }
 
-    ///Aktualisiert die Benutzerdaten anhand der ID
-    public Optional<User> updateUser(Long id, User updatedUser) {
-        return userRepository.findById(id).map(user -> {
-           user.setUserName(updatedUser.getUserName());
-           user.setEmail(updatedUser.getEmail());
-           user.setRole(updatedUser.getRole());
-           return userRepository.save(user);
-        });
+    public User loginUser(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User with email " + email + " not found"));
+    }
+
+    public User updateUser(Long id, User updatedUser) {
+        User user = getUserById(id);
+        user.setUserName(updatedUser.getUserName());
+        user.setEmail(updatedUser.getEmail());
+        user.setRole(updatedUser.getRole());
+        return userRepository.save(user);
     }
 }
