@@ -28,7 +28,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    //Aktualisiert die Benutzerdaten anhand der ID
+    ///Aktualisiert die Benutzerdaten anhand der ID
     public Optional<User> updateUser(Long id, User updatedUser) {
         return userRepository.findById(id).map(user -> {
            user.setUserName(updatedUser.getUserName());
