@@ -17,96 +17,46 @@ Troubleshooting
 Das Backend stellt eine RESTful API zur Verfügung für:
 
 Benutzer-Management - Registrierung und Authentifizierung
+
 Event-Management - CRUD-Operationen für Events
+
 Event-Registrierung - Anmeldung und Verwaltung von Teilnehmern
+
 Datenvalidierung - Input-Validierung und Error-Handling
-🛠 Technologie-Stack
+
+## 🛠 Technologie-Stack
 Spring Boot 3.2.x - Java Application Framework
+
 Spring Web - REST API Development
-Spring Data JPA - Object-Relational Mapping
-Spring Validation - Input Validation
+
 MySQL 8.0+ - Produktions-Datenbank
-H2 Database - Test- und Development-Datenbank
+
 Maven 3.8+ - Build Management
+
 Java 17+ - Programming Language
 
 ## 🚀 Installation & Setup
 Voraussetzungen
-Java 17+ (OpenJDK oder Oracle JDK)
+
+Java 17+ 
 Maven 3.8+
-MySQL 8.0+ oder Docker
+MySQL 8.0+ 
 Git
 Schnellstart
+
 Repository klonen:
 bash
+
 git clone <repository-url>
+
 cd event-management-challenge/backend
+
 Dependencies installieren:
+
 bash
 ./mvnw clean install
-Datenbank starten (Docker):
-bash
-docker-compose up -d
-Anwendung starten:
-bash
-./mvnw spring-boot:run
+
 Die API ist verfügbar unter: http://localhost:8080
-
-## 🗄 Datenbank-Konfiguration
-Option A: Docker MySQL (Empfohlen)
-docker-compose.yml:
-
-yaml
-version: '3.8'
-services:
-  mysql:
-    image: mysql:8.0
-    container_name: eventmanagement-mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: eventmanagement
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-volumes:
-  mysql_data:
-Starten:
-
-bash
-docker-compose up -d
-Option B: Lokale MySQL Installation
-MySQL installieren und starten
-Datenbank erstellen:
-sql
-CREATE DATABASE eventmanagement CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON eventmanagement.* TO 'admin'@'localhost';
-FLUSH PRIVILEGES;
-Option C: H2 In-Memory Database (Development)
-application-dev.yml:
-
-yaml
-spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-Profil aktivieren:
-
-bash
-./mvnw spring-boot:run -Dspring.profiles.active=dev
-H2 Console: http://localhost:8080/h2-console
 
 ## 🔗 API Dokumentation
 Base URL
@@ -141,6 +91,7 @@ Content-Type: application/json
   "email": "john@example.com",
   "password": "password123"
 }
+
 Event Management
 Alle Events abrufen
 http
@@ -259,59 +210,6 @@ Service Layer Pattern: Business Logic Kapselung
 DTO Pattern: Data Transfer Objects für API
 Builder Pattern: Entity-Erstellung
 Strategy Pattern: Verschiedene Authentifizierungs-Strategien
-
-## 🧪 Testing
-Unit Tests ausführen
-bash
-./mvnw test
-Spezifische Test-Klassen
-bash
-# Service Tests
-./mvnw test -Dtest=EventServiceTest
-
-# Repository Tests  
-./mvnw test -Dtest=EventRepositoryTest
-
-# Controller Tests
-./mvnw test -Dtest=EventControllerTest
-Integration Tests
-bash
-./mvnw test -Dtest=EventIntegrationTest
-Test Coverage
-bash
-./mvnw jacoco:report
-Report verfügbar unter: target/site/jacoco/index.html
-
-Beispiel Test-Struktur
-Service Test:
-
-java
-@ExtendWith(MockitoExtension.class)
-class EventServiceTest {
-    
-    @Mock
-    private EventRepository eventRepository;
-    
-    @InjectMocks
-    private EventService eventService;
-    
-    @Test
-    void shouldCreateEvent() {
-        // Given
-        Event event = Event.builder()
-            .title("Test Event")
-            .description("Test Description")
-            .build();
-            
-        when(eventRepository.save(any(Event.class))).thenReturn(event);
-        
-        // When
-        Event result = eventService.createEvent(event);
-        
-        // Then
-        assertThat(result.getTitle()).isEqualTo("Test Event");
-    }
-}
 
 ## ⚙️ Konfiguration
 application.yml
