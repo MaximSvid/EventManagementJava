@@ -1,8 +1,8 @@
 ## Event Management System - Backend
 
-# Ein Spring Boot REST API Backend für das Event Management System. 
+Ein Spring Boot REST API Backend für das Event Management System. 
 
-# Bietet vollständige Event-Verwaltung mit Benutzer-Authentifizierung und Event-Registrierung.
+Bietet vollständige Event-Verwaltung mit Benutzer-Authentifizierung und Event-Registrierung.
 
 ## 📋 Inhaltsverzeichnis
 Überblick
