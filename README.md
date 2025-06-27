@@ -30,52 +30,6 @@ H2 Database - Test- und Development-Datenbank
 Maven 3.8+ - Build Management
 Java 17+ - Programming Language
 
-## 📁 Projektstruktur
-backend/
-├── src/
-│   ├── main/
-│   │   ├── java/com/eventmanagement/
-│   │   │   ├── EventManagementApplication.java    # Main Application Class
-│   │   │   ├── config/
-│   │   │   │   ├── WebConfig.java                 # CORS & Web Configuration
-│   │   │   │   └── DatabaseConfig.java            # Database Configuration
-│   │   │   ├── controller/
-│   │   │   │   ├── UserController.java            # User REST Endpoints
-│   │   │   │   ├── EventController.java           # Event REST Endpoints
-│   │   │   │   └── RegistrationController.java    # Registration Endpoints
-│   │   │   ├── dto/
-│   │   │   │   ├── UserDto.java                   # Data Transfer Objects
-│   │   │   │   ├── EventDto.java
-│   │   │   │   └── RegistrationDto.java
-│   │   │   ├── entity/
-│   │   │   │   ├── User.java                      # JPA Entities
-│   │   │   │   ├── Event.java
-│   │   │   │   └── EventRegistration.java
-│   │   │   ├── repository/
-│   │   │   │   ├── UserRepository.java            # Data Access Layer
-│   │   │   │   ├── EventRepository.java
-│   │   │   │   └── EventRegistrationRepository.java
-│   │   │   ├── service/
-│   │   │   │   ├── UserService.java               # Business Logic
-│   │   │   │   ├── EventService.java
-│   │   │   │   └── RegistrationService.java
-│   │   │   └── exception/
-│   │   │       ├── GlobalExceptionHandler.java    # Exception Handling
-│   │   │       └── ResourceNotFoundException.java
-│   │   └── resources/
-│   │       ├── application.yml                    # Main Configuration
-│   │       ├── application-dev.yml                # Development Profile
-│   │       ├── application-test.yml               # Test Profile
-│   │       └── data.sql                           # Initial Data
-│   └── test/
-│       └── java/com/eventmanagement/
-│           ├── controller/                        # Controller Tests
-│           ├── service/                           # Service Tests
-│           └── repository/                        # Repository Tests
-├── pom.xml                                        # Maven Dependencies
-├── docker-compose.yml                             # Docker MySQL Setup
-└── README.md                                      # This file
-
 ## 🚀 Installation & Setup
 Voraussetzungen
 Java 17+ (OpenJDK oder Oracle JDK)
